@@ -153,6 +153,12 @@ vim.keymap.set("n", "<leader>üi", function()
   -- Insert the print line below
   vim.api.nvim_put({ print_line }, "l", true, true)
 end, { desc = "Print debug w line #" })
+
+vim.keymap.set("n", "<leader>ül", function()
+  local file = vim.fn.expand("%")
+  vim.cmd("!ruff check --fix " .. file)
+  vim.cmd("edit") -- Reload the file to see changes
+end, { noremap = true, silent = false, desc = "Ruff fix current file" })
 ----------------------------------------------------
 --- Quarto and Markdown Stuff
 ----------------------------------------------------
